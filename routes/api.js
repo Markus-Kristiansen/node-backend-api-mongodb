@@ -38,19 +38,6 @@ client.on("message", async (topic, payload) => {
   console.log(result);
 });
 
-client.on("connect", () => {
-  client.publish(
-    topic,
-    "nodejs mqtt test",
-    { qos: 0, retain: false },
-    (error) => {
-      if (error) {
-        console.error(error);
-      }
-    }
-  );
-});
-
 // Get a list of messages from the db
 router.get("/messages", (req, res, next) => {
   Message.find({}).then((messages) => {

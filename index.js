@@ -1,12 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes/api");
-const bodyParser = require("body-parser");
+const cors = require("cors");
+//const bodyParser = require("body-parser");
 
 // connect to mongodb
 mongoose
   .connect(
-    "mongodb+srv://user:Markus12@node-js-test.zgsuf.mongodb.net/MQTT?retryWrites=true&w=majority"
+    "mongodb+srv://user:admin@mqtt-server.lg9nt.mongodb.net/MQTT-DB?retryWrites=true&w=majority"
   )
   .then(() => console.log("Connected to MongoDB..."))
   .catch((err) => console.error("Could not connect to MongoDB", err));
@@ -15,7 +16,9 @@ mongoose.Promise = global.Promise;
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(cors());
+
+app.use(express.json());
 
 // Initialize routes
 app.use("/api", routes);
