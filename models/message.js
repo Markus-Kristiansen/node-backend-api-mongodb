@@ -5,13 +5,16 @@ const Schema = mongoose.Schema;
 const MessageSchema = new Schema({
   topic: {
     type: String,
-    required: [true, "Topic needs to be part of the post"],
+    required: [true, "Topic must be part of the post request"],
   },
   message: {
     type: String,
-    required: true,
+    required: [true, "Message must be part of the post request"],
   },
-  date: { type: Date, default: Date.now },
+  amtOfSoda: {
+    type: Number,
+  },
+  date: { type: Date, default: Date.now() },
 });
 
 const Message = mongoose.model("message", MessageSchema);

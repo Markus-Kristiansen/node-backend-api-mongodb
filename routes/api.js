@@ -19,7 +19,7 @@ const client = mqtt.connect(connectUrl, {
   reconnectPeriod: 1000,
 });
 
-const topic = "markus";
+const topic = "machine";
 client.on("connect", () => {
   console.log("Connected");
   client.subscribe([topic], () => {
@@ -29,9 +29,11 @@ client.on("connect", () => {
 
 client.on("message", async (topic, payload) => {
   console.log("Received Message:", topic, payload.toString());
+  const temp = JSON.parse(payload.toString());
   const message = new Message({
     topic: topic,
-    message: payload.toString(),
+    message: temp.message,
+    amtOfSoda: temp.amtOfSoda,
   });
 
   const result = await message.save();
