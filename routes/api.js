@@ -47,6 +47,12 @@ router.get("/messages", (req, res, next) => {
   });
 });
 
+router.get("/messages/:id", (req, res, next) => {
+  Message.findOne({ _id: req.params.id }).then((messages) => {
+    res.send(messages);
+  });
+});
+
 // add a new message to the db
 
 router.post("/messages", (req, res, next) => {
