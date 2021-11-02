@@ -27,7 +27,7 @@ client.on("connect", () => {
   });
 });
 
-client.on("message", async (topic, payload) => {
+/*client.on("message", async (topic, payload) => {
   console.log("Received Message:", topic, payload.toString());
   const temp = JSON.parse(payload.toString());
   const message = new Message({
@@ -37,6 +37,24 @@ client.on("message", async (topic, payload) => {
   });
 
   const result = await message.save();
+  console.log(result);
+});*/
+
+client.on("message", async (topic, payload) => {
+  console.log("Received Message:", topic, payload.toString());
+  const temp = JSON.parse(payload.toString());
+
+  const result = await Message.findByIdAndUpdate(
+    { _id: "61814916a294d1557b95f8b9" },
+    {
+      $set: {
+        name: temp.name,
+        amtOfSoda: temp.amtOfSoda,
+      },
+    },
+    { new: true }
+  );
+
   console.log(result);
 });
 
