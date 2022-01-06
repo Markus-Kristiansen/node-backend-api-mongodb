@@ -14,7 +14,7 @@ const MessageSchema = new Schema({
   amtOfSoda: {
     type: Number,
   },
-  date: { type: Date, default: Date.now() },
+  date: { type: Date, default: Date.now },
 });
 
 const Message = mongoose.model("message", MessageSchema);

@@ -43,7 +43,6 @@ client.on("connect", () => {
 client.on("message", async (topic, payload) => {
   console.log("Received Message:", topic, payload.toString());
   const temp = JSON.parse(payload.toString());
-
   const result = await Message.findByIdAndUpdate(
     { _id: "61814916a294d1557b95f8b9" },
     {
